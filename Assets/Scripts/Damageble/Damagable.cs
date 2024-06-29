@@ -60,5 +60,6 @@ public class Damagable : MonoBehaviour, IDamageable
 
 public enum DamageableType
 {
- 
+    player,
+    enemy,
 }

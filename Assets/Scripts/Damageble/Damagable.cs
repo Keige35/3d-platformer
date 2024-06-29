@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Damagable : MonoBehaviour
+public class Damagable : MonoBehaviour, IDamageable
 {
     [SerializeField] private DamageableType damageableType;
     [SerializeField] protected int maxHealth;
 
-    protected int currentHealth;
+    [SerializeField]protected int currentHealth;
 
     public int CurrentHealth => currentHealth;
 
@@ -33,6 +33,17 @@ public class Damagable : MonoBehaviour
         currentHealth -= damage;
         HealthUpdated();
     }
+
+    public virtual void TakeHeal(int heal)
+    { 
+        currentHealth += heal;
+        if(currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
+        HealthUpdated();
+    }
+
 
     public void UpdateCurrentHealth(int health)
     {

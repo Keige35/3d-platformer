@@ -9,7 +9,7 @@ public class CharacterStateMachine : MonoBehaviour
 
     [Header("Movement Properties")]
     [SerializeField] private float speed = 5f;
-    [SerializeField] private float speedRotate = 3f;
+    [SerializeField] private float speedRotate = 15f;
     [SerializeField] private float heightJump = 5f;
 
     [Header("IsGrounded Check")]
@@ -55,7 +55,7 @@ public class CharacterStateMachine : MonoBehaviour
         currentState = _stateMachine.CurrentState.ToString();
         currentVelocity = _rigidbody.velocity.ToString();
 
-         if((currentState == nameof(CharacterDashState) && _isStartCoroutine == false))
+         if((currentState == nameof(CharacterDashState)) && _isStartCoroutine == false)
         {
             _isDashCooldown = true;
             Debug.Log(currentState);

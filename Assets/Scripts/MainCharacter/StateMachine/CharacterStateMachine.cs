@@ -90,7 +90,7 @@ public class CharacterStateMachine : MonoBehaviour
         var runState = new CharacterRunState(CharacterAnimationController, inputManager, _rigidbody, speed, speedRotate);
         var jumpAndFallState = new CharacterJumpFallState(CharacterAnimationController, inputManager, _rigidbody, _jumpParticleSystem, speed, speedRotate, heightJump);
         var dashState = new CharacterDashState(CharacterAnimationController, inputManager, _rigidbody, dashPower, dashTime, dashCooldownTime);
-        var attackState = new CharacterAttackState(CharacterAnimationController);
+       // var attackState = new CharacterAttackState(CharacterAnimationController);
 
         idleState.AddTransition(new StateTransition(runState, new FuncStateCondition(() => Mathf.Abs(inputManager.MoveDirectionHorizontal) > 0.1f)));
         runState.AddTransition(new StateTransition(idleState, new FuncStateCondition(() => Mathf.Abs(inputManager.MoveDirectionHorizontal) < 0.1f)));
@@ -108,9 +108,9 @@ public class CharacterStateMachine : MonoBehaviour
         idleState.AddTransition(new StateTransition(dashState, new FuncStateCondition(() => inputManager.IsDashing && (_isDashCooldown == false))));
         runState.AddTransition(new StateTransition(dashState, new FuncStateCondition(() => inputManager.IsDashing && (_isDashCooldown == false))));
 
-        idleState.AddTransition(new StateTransition(attackState, new FuncStateCondition(() => inputManager.IsAttacking)));
-        runState.AddTransition(new StateTransition(attackState, new FuncStateCondition(() => inputManager.IsAttacking)));
-        jumpAndFallState.AddTransition(new StateTransition(attackState, new FuncStateCondition(() => inputManager.IsAttacking)));
+        //idleState.AddTransition(new StateTransition(attackState, new FuncStateCondition(() => inputManager.IsAttacking)));
+       // runState.AddTransition(new StateTransition(attackState, new FuncStateCondition(() => inputManager.IsAttacking)));
+       // jumpAndFallState.AddTransition(new StateTransition(attackState, new FuncStateCondition(() => inputManager.IsAttacking)));
 
         _stateMachine = new StateMachine(idleState);
     }

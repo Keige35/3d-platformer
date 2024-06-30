@@ -11,6 +11,7 @@ public class CharacterStateMachine : MonoBehaviour
     [SerializeField] private float speed = 5f;
     [SerializeField] private float speedRotate = 15f;
     [SerializeField] private float heightJump = 5f;
+    [SerializeField] private ParticleSystem _jumpParticleSystem;
 
     [Header("IsGrounded Check")]
     [SerializeField] private LayerMask groundLayer;
@@ -21,7 +22,7 @@ public class CharacterStateMachine : MonoBehaviour
     [SerializeField] private float dashPower = 24f;
     [SerializeField] private float dashTime = 0.2f;
     [SerializeField] private float dashCooldownTime = 2f;
-    [SerializeField] private ParticleSystem _particleSystem;
+    [SerializeField] private ParticleSystem _dashParticleSystem;
 
     [Header("User Output")]
     [SerializeField] private string currentState;
@@ -58,7 +59,7 @@ public class CharacterStateMachine : MonoBehaviour
 
          if((currentState == nameof(CharacterDashState)) && _isStartCoroutine == false)
         {
-            _particleSystem.Play();
+            _dashParticleSystem.Play();
             _isDashCooldown = true;
             Debug.Log(currentState);
             _isStartCoroutine = true;
@@ -87,7 +88,7 @@ public class CharacterStateMachine : MonoBehaviour
 
         var idleState = new CharacterIdleState(CharacterAnimationController);
         var runState = new CharacterRunState(CharacterAnimationController, inputManager, _rigidbody, speed, speedRotate);
-        var jumpAndFallState = new CharacterJumpFallState(CharacterAnimationController, inputManager, _rigidbody,_particleSystem, speed, speedRotate, heightJump);
+        var jumpAndFallState = new CharacterJumpFallState(CharacterAnimationController, inputManager, _rigidbody, _jumpParticleSystem, speed, speedRotate, heightJump);
         var dashState = new CharacterDashState(CharacterAnimationController, inputManager, _rigidbody, dashPower, dashTime, dashCooldownTime);
         var attackState = new CharacterAttackState(CharacterAnimationController);
 

@@ -57,6 +57,14 @@ public class CharacterStateMachine : MonoBehaviour
         currentState = _stateMachine.CurrentState.ToString();
         currentVelocity = _rigidbody.velocity.ToString();
 
+        if(_rigidbody.velocity.y > 0)
+        {
+            Physics.IgnoreLayerCollision(14,15,true);
+        }
+        if(_rigidbody.velocity.y <= 0) 
+        {
+            Physics.IgnoreLayerCollision(14, 15, false);
+        }
          if((currentState == nameof(CharacterDashState)) && _isStartCoroutine == false)
         {
             _dashParticleSystem.Play();

@@ -3,7 +3,10 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Platform
+  - DamageGround
+  - Trampoline
   layers:
   - Default
   - TransparentFX
@@ -16,11 +19,11 @@ TagManager:
   - 
   - 
   - Ground
-  - 
-  - 
-  - 
-  - 
-  - 
+  - DamageGround
+  - InvisibleWall
+  - MovingCube
+  - Player
+  - Trampoline
   - 
   - 
   - 
